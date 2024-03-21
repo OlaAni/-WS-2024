@@ -2,8 +2,10 @@ import HtmlTestRunner
 import unittest
 import requests
 from datetime import datetime
+import os
 
-f = open('test.log', 'w+')
+os.makedirs('test_results', exist_ok=True)
+f = open('test_results/test.log', 'w+')
 
 def saveResult(name, url, result):
     f.write('Test name:' + str(name) + '\n')
