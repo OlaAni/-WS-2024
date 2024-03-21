@@ -1,0 +1,21 @@
+Test name:TestRoot
+Test URL:http://localhost:5000/
+Test result:True
+Test result: 2024-03-21 12:43:07.782492
+---------------------------------------------
+ Test name:TestInsertProducts
+Test URL:http://localhost:5000/insertProduct?title=Tea&price=4.50&id=5
+Test result:True
+Test result: 2024-03-21 12:43:09.893191
+---------------------------------------------
+ Test name:TestGetProducts
+Test URL:http://localhost:5000/getProducts
+Test result:True
+Test result: 2024-03-21 12:43:14.031625
+---------------------------------------------
+ Test name:TestGetTitles
+Test URL:http://localhost:5000/getTitles
+Test result:True
+Test result: 2024-03-21 12:43:16.124163
+---------------------------------------------
+ 
