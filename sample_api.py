@@ -46,10 +46,6 @@ class Query(graphene.ObjectType):
         json_content = json.loads(data.text)
         print("Json: ",json_content)
 
-        # extractedTitle = json_content[0].get('title','')
-        # print(extractedTitle)
-        # return Product(title=extractedTitle)
-
         extractedTitles = [product['title'] for product in json_content]
         products_list = [Product(title=title) for title in extractedTitles]
 
