@@ -16,7 +16,7 @@ def saveResult(name, url, result):
 
 def checkServiceForWord(url, keyword):
     try:
-        x = requests.get(url)
+        x = requests.get(url, headers={"api-key":"92hosID3jX"})
         print(x.text)
         serverStatus=1
         if keyword in x.text:
@@ -27,34 +27,17 @@ def checkServiceForWord(url, keyword):
         return False
     
 
-# def test_twoValuesAreEqual(self):
-#     value1=True
-#     value2=checkServiceForWord('http://localhost:5000/', 'getProducts')
-#     self.assertEqual(value1, value2)
-
-
-# class TestGetProducts(unittest.TestCase):
-#     def test_twoValuesAreEqual(self):
-#         value1=True
-#         value2=checkServiceForWord('http://localhost:5000/getProducts', 'Jam')
-#         self.assertEqual(value1, value2)
-
-
-# class TestGetTitles(unittest.TestCase):
-#     def test_twoValuesAreEqual(self):
-#         value1=True
-#         value2=checkServiceForWord('http://localhost:5000/getTitles', 'Jam')
-#         self.assertEqual(value1, value2)
-
-
-# class TestInsertProducts(unittest.TestCase):
-#     def test_twoValuesAreEqual(self):
-#         value1=True
-
-#         value2=checkServiceForWord('http://localhost:5000/insertProduct?title=Tea&price=4.50&id=5', 'inserted')
-#         self.assertEqual(value1, value2)
-
-
+def checkServiceForWordpost(url, keyword):
+    try:
+        x = requests.post(url, headers={"api-key":"92hosID3jX"})
+        # print(x.text)
+        serverStatus=1
+        if keyword in x.text:
+            print("found keyword")
+            return True
+    except:
+        print("error")
+        return False
 
 
 name = 'TestRoot'
@@ -64,13 +47,13 @@ saveResult(name, url, result)
 
 name = 'TestInsertProducts'
 url = 'http://localhost:5000/insertProduct?title=Tea&price=4.50&id=5'
-result = checkServiceForWord(url, 'inserted')
+result = checkServiceForWordpost(url, 'inserted')
 saveResult(name, url, result)
 
 
 name = 'TestInsertProducts'
 url = 'http://localhost:5000/insertProduct?title=Jam&price=4.50&id=5'
-result = checkServiceForWord(url, 'inserted')
+result = checkServiceForWordpost(url, 'inserted')
 
 name = 'TestGetProducts'
 url = 'http://localhost:5000/getProducts'
@@ -89,6 +72,3 @@ saveResult(name, url, result)
 
 f.close()
 
-
-# if __name__ == '__main__':
-#     unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='test_results'))

@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 from flask_restful import Resource, Api
 import json
 from pymongo import MongoClient
@@ -12,6 +12,14 @@ app = Flask(__name__)
 api = Api(app)
 
 
+
+@app.before_request
+def before_request():
+    if request.endpoint == 'insertproduct':
+        api_key = request.headers.get('api-key')
+        if api_key != "92hosID3jX":
+            return jsonify({'error': 'Unauthorized'}), 401
+    
 
 class index(Resource):
     def get(self):
@@ -70,7 +78,7 @@ class getTitles(Resource):
 api.add_resource(getTitles, '/getTitles')
 
 class insertProduct(Resource):
-    def get(self):
+    def post(self):
         client = MongoClient("mongodb://root:example@localhost:27017/")
         db = client.products
         collection = db.products_data
